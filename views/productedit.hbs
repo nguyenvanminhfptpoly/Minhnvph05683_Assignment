@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="products">Sản phẩm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="cates">Danh mục sản phẩm</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2"  type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Sửa sản phẩm</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form role="form" method="post" action="/products/save-edit" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{products._id}}">
+                <select name="cate_id" class="form-control" id="productSelect">
+                    {{#each categories}}
+                        <option value="{{this._id}}"
+                            {{#if selected}}
+                                selected
+                            {{/if}}
+                        >{{this.name}}</option>
+                    {{/each}}
+                </select>
+                <div class="form-group">
+                    <label for="productname" class="loginFormElement">Tên:</label>
+                    <input name="name" class="form-control" id="productname" value="{{products.name}}" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="productprice" class="loginFormElement">Giá sản phẩm</label>
+                    <input name="price" class="form-control" id="productprice" value="{{products.price}}" type="number">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Ảnh minh họa</label>
+                    <div style="width: 200px; height: 200px;">
+                        <img src="{{products.image}}" class="img-thumbnail">
+                    </div>
+                    <input name="image" class="filestyle" data-icon="false" type="file">
+                </div>
+                <div class="form-group">
+                    <label class="loginformelement" for="productdescription">Chi tiết</label>
+                    <textarea name="detail" id="productdescription" class="form-control input-lg"  placeholder="Large" type="text">{{products.detail}}</textarea><div class="container">
+                </div>
+                    <button type="submit" id="loginSubmit" class="btn btn-success loginFormElement">Sửa sản phẩm</button>
+                </div></form>
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+</body>
+</html>

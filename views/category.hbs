@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="products">Sản phẩm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="cates">Danh mục sản phẩm</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+</nav>
+<div class="container">
+    <div style="margin: 20px" class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2> <b>Danh mục sản phẩm</b></h2>
+            </div>
+            <div class="col-sm-6">
+                <a href="/Cadd" class="btn btn-success" data-toggle="modal"><img style="width: 20px" src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-add-icon.png"  /> <span>Thêm danh mục mới</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    {{#each categories}}
+    <ul class="list-unstyled">
+        <li class="media">
+            <img style="width: 300px; height: 280px" class="mr-3" src="{{this.image}}" alt="Generic placeholder image">
+            <div class="media-body">
+                <h5 class="mt-0 mb-1">{{this.name}}</h5>
+                {{this.description}}
+            </div>
+            <div class="card-footer">
+
+                <a href="/Cedit/{{this._id}}" class="btn btn-primary"><img style="width: 15px" src="https://cdn0.iconfinder.com/data/icons/flaturici-set-5/512/pencil-512.png">Sửa</a>
+                <a href="javascript:void(0);" onclick="confirmDelete('/Cremove/{{this._id}}', '{{this.name}}')" class="btn btn-primary"  ><img style="width: 15px" src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Close-512.png">Loại bỏ</a>
+            </div>
+        </li>
+
+    </ul>
+        {{/each}}
+</div>
+<script>
+    function confirmDelete(url, catename){
+        var conf = confirm(`Ban co chac chan muon xoa danh muc ${catename} `);
+        if(conf == true){
+            window.location.href = url;
+        }
+    }
+</script>
+</body>
+</html>
